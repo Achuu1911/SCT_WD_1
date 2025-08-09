@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Internship Application</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #0077b6;
+      --hover: #023e8a;
+      --bg-dark: rgba(0, 0, 0, 0.7);
+      --white: #ffffff;
+      --gray: #ccc;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: var(--white);
+      height: 100vh;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 15px 50px;
+      background-color: var(--bg-dark);
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+
+    header.scrolled {
+      background-color: #1c1c1c;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.6);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .logo {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--white);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: var(--primary);
+    }
+
+    .contact-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding-top: 100px;
+    }
+
+    .form-box {
+      background-color: var(--bg-dark);
+      padding: 40px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .form-box h2 {
+      margin-bottom: 25px;
+      text-align: center;
+      color: var(--primary);
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      background: transparent;
+      border: 1px solid var(--gray);
+      border-radius: 5px;
+      color: var(--white);
+      font-size: 16px;
+    }
+
+    .form-group label {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      background: transparent;
+      color: #bbb;
+      font-size: 14px;
+      transition: all 0.2s;
+      pointer-events: none;
+    }
+
+    .form-group input:focus + label,
+    .form-group input:not(:placeholder-shown) + label,
+    .form-group textarea:focus + label,
+    .form-group textarea:not(:placeholder-shown) + label {
+      top: -10px;
+      left: 10px;
+      background: var(--bg-dark);
+      padding: 0 5px;
+      font-size: 12px;
+      color: var(--primary);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: var(--hover);
+    }
+
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+        align-items: flex-end;
+      }
+
+      .form-box {
+        margin: 0 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header id="navbar">
+    <nav>
+      <div class="logo">InternConnect</div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Opportunities</a></li>
+        <li><a href="#">Apply</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="contact-container">
+    <form class="form-box" action="success.html" method="GET" onsubmit="return validateForm()">
+      <h2>Internship Contact Form</h2>
+      <div class="form-group">
+        <input type="text" id="name" name="name" placeholder=" " required>
+        <label for="name">Full Name</label>
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" name="email" placeholder=" " required>
+        <label for="email">Email Address</label>
+      </div>
+      <div class="form-group">
+        <input type="text" id="university" name="university" placeholder=" " required>
+        <label for="university">University / College</label>
+      </div>
+      <div class="form-group">
+        <textarea id="message" name="message" rows="4" placeholder=" " required></textarea>
+        <label for="message">Why are you applying?</label>
+      </div>
+      <button type="submit">Submit Application</button>
+    </form>
+  </div>
+
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    function validateForm() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const university = document.getElementById("university").value.trim();
+      const msg = document.getElementById("message").value.trim();
+
+      if (!name || !email || !university || !msg) {
+        alert("Please complete all fields.");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</body>
+</html>
